@@ -1,29 +1,33 @@
 import { Request, Response } from 'express';
+import dotenv from 'dotenv';
 
-import sqlConnection from '../db';
+import pool from '../db';
 
 import { User } from '../types/User';
 
+dotenv.config();
+
 export const userController = {
   getUsers: async (_req: Request, res: Response) => {
-    sqlConnection.query('SELECT * FROM user;', (err, response) => {
+    pool.query('SELECT * FROM user WHERE role = 0;', (err: any, response: User[]) => {
       if (err) {
         console.error(err);
         return;
       }
       return res.status(200).json(response);
     });
+    return;
   },
 
   getUser: async (req: Request, res: Response) => {
     const { id } = req.params;
-    sqlConnection.query('SELECT * FROM user WHERE id = ?;', [id], (err, response) => {
+    pool.query('SELECT * FROM user WHERE id = ?;', [id], (err: any, user: User) => {
       if (err) {
-        console.error(err);
-        return;
+        throw err;
       }
-      return res.status(200).json(response);
+      return res.status(200).json(user);
     });
+    return;
   },
 
   updateUser: async (req: Request, res: Response) => {
@@ -35,7 +39,7 @@ export const userController = {
                   SET @email = ?;
                   CALL AddUser(@name, @email);
                   `;
-    sqlConnection.query(query, [id, name, email], (err) => {
+    pool.query(query, [id, name, email], (err) => {
       if (err) {
         console.error(err);
         return;
@@ -46,7 +50,7 @@ export const userController = {
 
   deleteUser: async (req: Request, res: Response) => {
     const { id } = req.params;
-    sqlConnection.query('DELETE FROM user WHERE id = ?', [id], (err) => {
+    pool.query('DELETE FROM user WHERE id = ?', [id], (err) => {
       if (err) {
         console.error(err);
         return;
