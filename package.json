@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
-    "start": "npm run tsc && node build/index.js",
+    "start:tsc": "npm run tsc && node build/index.js",
+    "start": "node build/index.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev src/index.ts",
+    "build": "tsc",
     "eslint": "eslint  --fix . --ext .ts",
     "test": "cross-env NODE_ENV=test jest --verbose --silent",
     "test:watch": "npm run test -- --watch"
