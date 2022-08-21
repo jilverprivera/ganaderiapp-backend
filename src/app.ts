@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
@@ -23,6 +23,10 @@ app.use(
     useTempFiles: true,
   })
 );
+
+app.get('/', (_req, res: Response) => {
+  return res.status(200).send('Backend for GanaderiApp using Express and MySQL Database.');
+});
 
 app.use('/api', userRoute);
 app.use('/auth', authRoute);
