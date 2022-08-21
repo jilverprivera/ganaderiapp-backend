@@ -13,8 +13,12 @@ import authRoute from './routes/auth';
 dotenv.config();
 
 const app = express();
+const { NODE_ENV } = process.env;
 
-app.use(morgan('dev'));
+if (NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
