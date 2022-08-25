@@ -3,17 +3,11 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const { MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE, NODE_ENV } = process.env;
+import { databaseKeys } from './keys';
 
-const pool = createPool({
-  connectionLimit: 10,
-  host: MYSQL_HOST,
-  user: MYSQL_USER,
-  password: MYSQL_PASSWORD,
-  database: MYSQL_DATABASE,
-  insecureAuth: true,
-  multipleStatements: true,
-});
+const { NODE_ENV } = process.env;
+
+const pool = createPool(databaseKeys);
 
 pool.getConnection((err, connection) => {
   if (err) {
