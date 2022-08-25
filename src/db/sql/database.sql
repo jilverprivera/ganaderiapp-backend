@@ -3,7 +3,7 @@ USE `ganaderiapp` ;
 
 CREATE TABLE IF NOT EXISTS `ganaderiapp`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(64) NOT NULL,
+  `name` VARCHAR(64) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
@@ -27,9 +27,10 @@ CREATE TABLE IF NOT EXISTS `ganaderiapp`.`animal` (
   `sold` BIT NOT NULL,
   `born` BIT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `serie_UNIQUE` (`serial` ASC) VISIBLE,
+  UNIQUE INDEX `serial_UNIQUE` (`serial` ASC) VISIBLE,
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
   INDEX `created_by_idx` (`created_by` ASC) VISIBLE,
-  INDEX `type_id_idx` (`category_id` ASC) VISIBLE,
+  INDEX `category_id_idx` (`category_id` ASC) VISIBLE,
   CONSTRAINT `created_by`
     FOREIGN KEY (`created_by`)
     REFERENCES `ganaderiapp`.`user` (`id`)
@@ -76,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `ganaderiapp`.`sale` (
   `concept` VARCHAR(255) NOT NULL,
   `created_by` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `created_by_idx` (`created_by` ASC) VISIBLE,
+  INDEX `created_by` (`created_by` ASC) VISIBLE,
   CONSTRAINT `created_by`
     FOREIGN KEY (`created_by`)
     REFERENCES `ganaderiapp`.`user` (`id`)
