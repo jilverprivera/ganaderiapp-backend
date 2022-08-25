@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -33,7 +33,11 @@ app.use(
   })
 );
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerOptions)));
+app.use('/', (_req, res: Response) => {
+  return res.status(200).send('GanaderiApp backend, go /api-doc to see the documentation.');
+});
+
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerOptions)));
 
 app.use('/auth', authRoute);
 app.use('/api', userRoute);
