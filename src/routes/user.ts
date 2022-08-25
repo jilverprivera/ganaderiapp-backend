@@ -10,7 +10,9 @@ router.route('/users').get(AdminCheck, userController.getUsers);
 router
   .route('/user/:id')
   .get(AdminCheck, userController.getUser)
-  .delete(userController.deleteUser)
-  .put(userController.updateUser);
+  .delete(AdminCheck, userController.deleteUser)
+  .put(AdminCheck, userController.updateUser);
+
+router.route('/user_info').get(userController.getUser);
 
 export default router;
