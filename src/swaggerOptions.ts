@@ -11,6 +11,9 @@ export const swaggerOptions = {
       {
         url: 'https://backend-ganaderiapp.herokuapp.com',
       },
+      {
+        url: 'https://ganaderiapp-backend.onrender.com',
+      },
     ],
   },
   apis: [`${path.join(__dirname, './routes/*.ts')}`], // files containing annotations as above
