@@ -7,8 +7,10 @@ import fileUpload from 'express-fileupload';
 
 import dotenv from 'dotenv';
 
-import userRoute from './routes/user';
 import authRoute from './routes/auth';
+import userRoute from './routes/user';
+import animalRoute from './routes/animal';
+import categoryRoute from './routes/category';
 
 dotenv.config();
 
@@ -32,7 +34,9 @@ app.get('/', (_req, res: Response) => {
   return res.status(200).send('Backend for GanaderiApp using Express and MySQL Database.');
 });
 
-app.use('/api', userRoute);
 app.use('/auth', authRoute);
+app.use('/api', userRoute);
+app.use('/api', animalRoute);
+app.use('/api', categoryRoute);
 
 export default app;
