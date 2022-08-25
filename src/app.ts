@@ -1,9 +1,10 @@
-import express, { Response } from 'express';
+import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsDoc from 'swagger-jsdoc';
 
 import dotenv from 'dotenv';
 
@@ -11,6 +12,8 @@ import authRoute from './routes/auth';
 import userRoute from './routes/user';
 import animalRoute from './routes/animal';
 import categoryRoute from './routes/category';
+
+import { swaggerOptions } from './swaggerOptions';
 
 dotenv.config();
 
@@ -30,9 +33,7 @@ app.use(
   })
 );
 
-app.get('/', (_req, res: Response) => {
-  return res.status(200).send('Backend for GanaderiApp using Express and MySQL Database.');
-});
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerOptions)));
 
 app.use('/auth', authRoute);
 app.use('/api', userRoute);
