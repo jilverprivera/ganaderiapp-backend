@@ -33,8 +33,8 @@ app.use(
   })
 );
 
-app.use('/', (_req, res: Response) => {
-  return res.status(200).send('GanaderiApp backend, go /api-doc to see the documentation.');
+app.get('/', (_req, res: Response) => {
+  return res.status(200).redirect('/api-doc');
 });
 
 app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerOptions)));
