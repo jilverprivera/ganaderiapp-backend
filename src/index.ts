@@ -1,14 +1,13 @@
-import dotenv from 'dotenv';
+import { BackendApp } from './backendApp';
 
-import app from './app';
+try {
+  new BackendApp().start();
+} catch (e) {
+  console.log(e);
+  process.exit(1);
+}
 
-dotenv.config();
-
-const { PORT, NODE_ENV } = process.env;
-const APP_PORT = PORT || 5000;
-
-app.listen(APP_PORT, () => {
-  if (NODE_ENV === 'development') {
-    console.log(`Port: ${APP_PORT}`);
-  }
+process.on('uncaughtException', (err) => {
+  console.log('uncaughtException', err);
+  process.exit(1);
 });

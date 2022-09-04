@@ -3,5 +3,7 @@ export type User = {
   name: string;
   email: string;
   password: string;
-  role: number;
+  image_url?: string;
+  image_public_id?: string;
+  role?: number;
 };
