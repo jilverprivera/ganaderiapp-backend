@@ -3,9 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
+  "repository": {
+    "url": "https://github.com/jilverprivera/ganaderiapp-backend"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.14.0"
+  },
   "scripts": {
     "postinstall": "tsc",
-    "build": "npm run postinstall",
+    "build": "npm build:clean && npm run postinstall",
+    "build:clean": "rm -r build; exit 0",
     "start": "node build/index.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev src/index.ts",
     "jest": "cross-env NODE_ENV=test jest --verbose --silent --forceExit",
@@ -21,10 +29,11 @@
     "@types/cors": "2.8.12",
     "@types/express": "4.17.13",
     "@types/express-fileupload": "^1.2.3",
+    "@types/jsonwebtoken": "^8.5.9",
     "@types/morgan": "1.9.3",
-    "@types/mysql": "2.15.21",
-    "@types/swagger-jsdoc": "^6.0.1",
-    "@types/swagger-ui-express": "^4.1.3",
+    "@types/pg": "^8.6.5",
+    "@types/swagger-jsdoc": "6.0.1",
+    "@types/swagger-ui-express": "4.1.3",
     "@typescript-eslint/eslint-plugin": "5.33.1",
     "@typescript-eslint/parser": "5.33.1",
     "jest": "28.1.3",
@@ -33,20 +42,18 @@
     "typescript": "4.7.4"
   },
   "dependencies": {
-    "@types/jsonwebtoken": "8.5.8",
     "bcrypt": "5.0.1",
     "cloudinary": "1.30.1",
     "cookie-parser": "1.4.6",
     "cors": "2.8.5",
     "cross-env": "7.0.3",
     "dotenv": "16.0.1",
-    "ejs": "3.1.8",
     "express": "4.18.1",
     "express-fileupload": "1.4.0",
     "jsonwebtoken": "8.5.1",
     "morgan": "1.10.0",
-    "mysql": "2.18.1",
-    "swagger-jsdoc": "^6.2.5",
-    "swagger-ui-express": "^4.5.0"
+    "pg": "8.8.0",
+    "swagger-jsdoc": "6.2.5",
+    "swagger-ui-express": "4.5.0"
   }
 }
