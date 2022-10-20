@@ -11,7 +11,6 @@ export const userController = {
   getUsers: async (_req: Request, res: Response) => {
     return pool.query('SELECT * FROM person;', (err: any, result) => {
       const { rows } = result;
-      console.log(rows);
       if (err) throw err;
       if (rows.length === 0) {
         return res.status(200).json({ message: 'Not Content. User table does not have any values yet.', users: [] });

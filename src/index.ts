@@ -2,8 +2,8 @@ import { BackendApp } from './backendApp';
 
 try {
   new BackendApp().start();
-} catch (e) {
-  console.log(e);
+} catch (err) {
+  console.log(err);
   process.exit(1);
 }
 

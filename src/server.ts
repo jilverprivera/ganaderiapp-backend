@@ -1,4 +1,4 @@
-import express, { json } from 'express';
+import express from 'express';
 import * as http from 'http';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -19,7 +19,7 @@ export class Server {
   constructor(port: string) {
     this.port = port;
     this.express = express();
-    this.express.use(json());
+    this.express.use(express.json());
     this.express.use(cors());
     this.express.use(morgan('dev'));
     this.express.use(cookieParser());

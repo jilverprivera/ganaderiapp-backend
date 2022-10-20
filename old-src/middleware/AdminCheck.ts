@@ -18,7 +18,6 @@ export const AdminCheck = async (req: Request, res: Response, next: NextFunction
     if (err) throw new Error(err.message);
     console.log(rows);
   });
-  // console.log(tokenCheck);
   if (id !== 1) {
     return res.status(403).json({ message: 'Unauthorized. Admin permissions is required.' });
   }

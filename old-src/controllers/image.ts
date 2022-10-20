@@ -44,7 +44,7 @@ export const imageController = {
         });
       });
     } catch (err) {
-      console.log(err);
+      throw err;
       return;
     }
   },
@@ -55,7 +55,6 @@ export const imageController = {
         return res.status(400).json({ message: 'Bad Request. No image selected.' });
       }
       const { file }: any = req.files;
-      console.log(file);
       const { tempFilePath, size, mimetype }: File = file;
 
       if (size > 1024 * 1024) {

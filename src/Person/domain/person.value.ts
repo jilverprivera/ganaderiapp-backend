@@ -14,9 +14,9 @@ export class PersonValue implements PersonEntity {
     this.email = email;
     this.password = password;
     this.role = 0;
-    this.image_public_id = image_url ?? 'ganaderiapp-person/mhiumutd6wbrvvs0tltt';
+    this.image_public_id = image_public_id ?? 'ganaderiapp/person/vqfvovbhbt80el9jkmki';
     this.image_url =
-      image_public_id ??
-      'http://res.cloudinary.com/jilver-cloud/image/upload/v1662263002/ganaderiapp-person/mhiumutd6wbrvvs0tltt.png';
+      image_url ??
+      'http://res.cloudinary.com/jilver-cloud/image/upload/v1662328239/ganaderiapp/person/vqfvovbhbt80el9jkmki.png';
   }
 }
